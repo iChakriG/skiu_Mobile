@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Skiu",
+    "slug": "skiu-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.skiu.mobile"
+    },
+    "android": {
+      "backgroundColor": "#0f172a",
+      "package": "com.skiu.mobile"
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
+  }
+}
