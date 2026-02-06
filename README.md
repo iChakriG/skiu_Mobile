@@ -67,6 +67,24 @@ No admin features; use the web app for admin.
 
 Project is linked to EAS via `app.json` → `expo.extra.eas.projectId`. Builds run in the cloud.
 
+### First-time Android credentials (required for workflows)
+
+EAS cannot generate a new Android keystore in non-interactive mode (e.g. when running the workflow or CI). You must create credentials once from your machine:
+
+```bash
+eas login
+eas build --platform android --profile production
+```
+
+When prompted **"Generate a new Android Keystore?"** choose **Yes**. EAS will create and store the keystore. After that, workflow and non-interactive builds will reuse it.
+
+Alternatively, set up credentials only (no full build):
+
+```bash
+eas credentials --platform android
+# Follow prompts to generate a new keystore
+```
+
 **Deploy (build for iOS + Android):**
 
 ```bash
