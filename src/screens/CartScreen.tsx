@@ -12,12 +12,12 @@ import { getCart } from '../api/cart';
 import type { Cart, CartItem } from '../types/cart';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/index';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../context/AuthContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Cart'>;
 
 export function CartScreen({ navigation }: Props) {
-  const { userId } = useUser();
+  const { userId } = useAuth();
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -27,7 +27,7 @@ export function CartScreen({ navigation }: Props) {
     if (!userId) {
       setCart(null);
       setLoading(false);
-      setError('Set user ID to view cart');
+      setError('Sign in to view your cart');
       return;
     }
     setError(null);
@@ -54,7 +54,13 @@ export function CartScreen({ navigation }: Props) {
   if (!userId) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.message}>Set a user ID in the app to view your cart.</Text>
+        <Text style={styles.message}>Sign in to view your cart.</Text>
+        <TouchableOpacity
+          style={styles.primaryBtn}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <Text style={styles.primaryBtnText}>Sign in</Text>
+        </TouchableOpacity>
       </View>
     );
   }

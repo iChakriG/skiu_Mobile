@@ -1,11 +1,12 @@
-# Mobile app source
+# Source (mobile app)
 
 | Folder | Purpose |
 |--------|--------|
-| **api/** | API client: base URL, `apiRequest()`, and functions for products, cart, orders. Sends `x-user-id` when provided. |
-| **context/** | UserContext — holds `userId` for cart/orders; set in Settings. |
-| **navigation/** | Stack navigator, screen list, and `RootStackParamList`. |
-| **screens/** | UI screens: ProductList, ProductDetail, Cart, Checkout, Orders, OrderDetail, Settings. |
-| **types/** | TypeScript types matching backend: Product, Cart, Order, Address. |
+| **api/** | API client (base URL, `apiRequest`), endpoints for products, cart, orders. Sends `x-user-id` from auth when signed in. |
+| **context/** | AuthContext — Supabase auth (sign in/up/out), exposes `userId` for API. |
+| **lib/** | Supabase client (AsyncStorage for session). |
+| **navigation/** | Stack navigator, screen list, `RootStackParamList`. |
+| **screens/** | Screens: ProductList, ProductDetail, Cart, Checkout, Orders, OrderDetail, Login, SignUp, Settings. |
+| **types/** | Types: Product, Cart, Order, Address. |
 
-Entry: `App.tsx` at repo root wraps `UserProvider` and `RootNavigator`.
+Entry: root `App.tsx` wraps `AuthProvider` and `RootNavigator`.

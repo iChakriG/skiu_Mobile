@@ -1,3 +1,3 @@
 # Context
 
-**UserContext.tsx** — Provides `userId`, `setUserId`, and `isAuthenticated`. Used for cart and orders API calls (x-user-id). Set in Settings screen.
+**AuthContext.tsx** — Supabase auth for the mobile app: `user`, `loading`, `signIn`, `signUp`, `signOut`, `userId` (used as API `x-user-id`). Sign in/up from Settings or when opening Cart/Orders.

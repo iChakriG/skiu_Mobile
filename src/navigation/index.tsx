@@ -10,6 +10,8 @@ import { OrdersScreen } from '../screens/OrdersScreen';
 import { OrderDetailScreen } from '../screens/OrderDetailScreen';
 import { CheckoutScreen } from '../screens/CheckoutScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
+import { LoginScreen } from '../screens/LoginScreen';
+import { SignUpScreen } from '../screens/SignUpScreen';
 
 export type RootStackParamList = {
   ProductList: undefined;
@@ -19,6 +21,8 @@ export type RootStackParamList = {
   OrderDetail: { orderId: string };
   Checkout: undefined;
   Settings: undefined;
+  Login: undefined;
+  SignUp: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -83,6 +87,16 @@ export function RootNavigator() {
           name="Settings"
           component={SettingsScreen}
           options={{ title: 'Settings' }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: 'Sign in' }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ title: 'Sign up' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

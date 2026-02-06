@@ -13,12 +13,12 @@ import { createOrder } from '../api/orders';
 import type { Address } from '../types/order';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/index';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../context/AuthContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Checkout'>;
 
 export function CheckoutScreen({ navigation }: Props) {
-  const { userId } = useUser();
+  const { userId } = useAuth();
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -42,7 +42,7 @@ export function CheckoutScreen({ navigation }: Props) {
 
   const handlePlaceOrder = async () => {
     if (!userId) {
-      Alert.alert('Error', 'User ID required');
+      Alert.alert('Error', 'Please sign in to place an order.');
       return;
     }
     if (!isValid) {

@@ -14,13 +14,13 @@ import { addToCart } from '../api/cart';
 import type { Product } from '../types/product';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/index';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../context/AuthContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProductDetail'>;
 
 export function ProductDetailScreen({ route, navigation }: Props) {
   const { productId } = route.params;
-  const { userId } = useUser();
+  const { userId } = useAuth();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +43,7 @@ export function ProductDetailScreen({ route, navigation }: Props) {
 
   const handleAddToCart = async () => {
     if (!userId) {
-      Alert.alert('Sign in required', 'Set a user ID in the app to add to cart.');
+      Alert.alert('Sign in required', 'Sign in to add items to your cart.');
       return;
     }
     if (!product) return;

@@ -12,12 +12,12 @@ import { getOrders } from '../api/orders';
 import type { Order } from '../types/order';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/index';
-import { useUser } from '../context/UserContext';
+import { useAuth } from '../context/AuthContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Orders'>;
 
 export function OrdersScreen({ navigation }: Props) {
-  const { userId } = useUser();
+  const { userId } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -27,7 +27,7 @@ export function OrdersScreen({ navigation }: Props) {
     if (!userId) {
       setOrders([]);
       setLoading(false);
-      setError('Set user ID to view orders');
+      setError('Sign in to view your orders');
       return;
     }
     setError(null);
@@ -54,7 +54,13 @@ export function OrdersScreen({ navigation }: Props) {
   if (!userId) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.message}>Set a user ID in the app to view your orders.</Text>
+        <Text style={styles.message}>Sign in to view your orders.</Text>
+        <TouchableOpacity
+          style={styles.signInBtn}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <Text style={styles.signInBtnText}>Sign in</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -129,4 +135,13 @@ const styles = StyleSheet.create({
   status: { color: '#0ea5e9', fontSize: 12, marginTop: 4, textTransform: 'capitalize' },
   total: { color: '#22c55e', fontSize: 18, fontWeight: '700', marginTop: 4 },
   date: { color: '#94a3b8', fontSize: 12, marginTop: 4 },
+  signInBtn: {
+    backgroundColor: '#0ea5e9',
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 16,
+    paddingHorizontal: 24,
+  },
+  signInBtnText: { color: '#fff', fontSize: 16, fontWeight: '600' },
 });
