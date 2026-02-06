@@ -1,5 +1,14 @@
-const API_BASE =
+import { Platform } from 'react-native';
+
+const rawBase =
   process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
+
+// On Android emulator, localhost is the emulator itself. Use 10.0.2.2 to reach the host machine.
+const API_BASE =
+  Platform.OS === 'android' &&
+  (rawBase.includes('localhost') || rawBase.includes('127.0.0.1'))
+    ? rawBase.replace(/localhost|127\.0\.0\.1/g, '10.0.2.2')
+    : rawBase;
 
 export function getBaseUrl(): string {
   return API_BASE;

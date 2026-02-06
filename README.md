@@ -20,13 +20,43 @@ npm start
 
 Then press `i` for iOS simulator or `a` for Android emulator, or scan the QR code with Expo Go.
 
+## iOS local build (simulator / device)
+
+**Xcode (required):** You must use the **full Xcode app** (install from the App Store), not only Command Line Tools. The iOS SDK (`iphoneos`) is only provided by Xcode.app. If you see `SDK "iphoneos" cannot be located` or glog configure errors, run:
+
+```bash
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+```
+
+Open Xcode once to accept the license if prompted. Then run `npm run ios:pod` again.
+
+The iOS app also needs **CocoaPods** and installed pods. If you see `Unable to open base configuration reference file ... Pods-Skiu.debug.xcconfig`, do this once:
+
+1. **Install Homebrew** (if you don’t have it): [brew.sh](https://brew.sh)  
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. **Install CocoaPods:**  
+   ```bash
+   brew install cocoapods
+   ```
+3. **Install iOS pods** (from `skiu_Mobile`):  
+   ```bash
+   npm run ios:pod
+   ```
+4. **Run the app:**  
+   ```bash
+   npm run ios
+   ```
+
 ## Scripts
 
-| Script       | Description              |
-| ------------ | ------------------------- |
-| `npm start`  | Start Expo dev server     |
-| `npm run ios`| Run on iOS simulator      |
-| `npm run android` | Run on Android emulator |
+| Script          | Description                    |
+| --------------- | ------------------------------ |
+| `npm start`     | Start Expo dev server          |
+| `npm run ios`   | Run on iOS simulator           |
+| `npm run ios:pod` | Install iOS CocoaPods (run once if needed) |
+| `npm run android` | Run on Android emulator      |
 
 ## Environment
 
