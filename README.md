@@ -88,3 +88,12 @@ eas submit --platform ios --platform android
 ```
 
 Build profiles (development, preview, production) are in `eas.json`.
+
+**Run the production-builds workflow (Android + iOS in parallel):**
+
+```bash
+eas login
+npx eas-cli@latest workflow:run create-production-builds.yml
+```
+
+The workflow is defined in `.eas/workflows/create-production-builds.yml`. After it starts, you’ll see it on the EAS Workflows page.
